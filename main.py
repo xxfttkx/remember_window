@@ -6,7 +6,7 @@ import json
 import win32gui
 import win32con
 
-blacklist = ['Google Chrome', 'Visual Studio Code', '文件资源管理器', 'MAA', 'Windows PowerShell', 'Steam']
+blacklist = ['Google Chrome', 'Visual Studio', '文件资源管理器', 'MAA', 'Windows PowerShell', 'Steam']
 whitelist = ['Clash Verge', '雷神加速器', 'OBS', '直播姬']
 class Window:
     def __init__(self, title, left, top, width, height):
@@ -41,7 +41,7 @@ class Window:
 def get_window(title):
     windows = gw.getWindowsWithTitle(title)
     if len(windows)==0:
-        print("windows.size==0")
+        # print("windows.size==0")
         return None
     for w in windows:
         if w.title == title:
@@ -83,6 +83,10 @@ def tryUpdateJson(title):
     for index, w in enumerate(curr_windows):
         if w.title==title:
             curr = getWindowFromTitle(title)
+            if curr==None:
+                return False
+            if curr.top<0:
+                return False
             if curr!=w:
                 curr_windows[index] = curr
                 print(curr)
@@ -90,15 +94,18 @@ def tryUpdateJson(title):
             return False
     if not found:
         w = getWindowFromTitle(title)
+        if w==None:
+            return False
         curr_windows.append(w)
         print(w)
         return True
 
 def getWindowFromTitle(title):
     window = get_window(title)
-    if window is None:
+    if window == None:
         # todo
-        print("window $title == None")
+        # print(f"window {title} == None")
+        return None
     return Window(window.title, window.box.left, window.box.top, window.box.width, window.box.height)
 
 def is_alt_tab_window(hwnd):

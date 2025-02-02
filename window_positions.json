@@ -1,24 +1,17 @@
 [
     {
         "title": "雷神加速器",
-        "left": -22187,
-        "top": -21333,
-        "width": 107,
-        "height": 19
-    },
-    {
-        "title": "Steam",
-        "left": -22187,
-        "top": -21333,
-        "width": 107,
-        "height": 19
+        "left": -2335,
+        "top": 75,
+        "width": 1072,
+        "height": 672
     },
     {
         "title": "Clash Verge",
-        "left": -22187,
-        "top": -21333,
-        "width": 107,
-        "height": 19
+        "left": -2426,
+        "top": 66,
+        "width": 906,
+        "height": 739
     },
     {
         "title": "v2rayN - V5.28 - 2022/07/03",
@@ -47,12 +40,5 @@
         "top": -21333,
         "width": 107,
         "height": 19
-    },
-    {
-        "title": "Microsoft Visual Studio",
-        "left": -8,
-        "top": -8,
-        "width": 2576,
-        "height": 1408
     }
 ]
