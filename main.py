@@ -15,6 +15,7 @@ class Window:
         self.top = top
         self.width = width
         self.height = height
+        self.open = False
 
     def toJson(self):
         return {
@@ -88,6 +89,7 @@ def tryUpdateJson(title):
             if curr.top<-10:
                 return False
             if curr!=w:
+                curr.open = w.open
                 curr_windows[index] = curr
                 print(curr)
                 return True
@@ -149,18 +151,25 @@ curr_windows = []
 def main():
     global curr_windows
     curr_windows = loadJson()
-    move_set = set()
     while True:
         alt_tab_windows = get_alt_tab_windows()
         needSave = False
-        for title in alt_tab_windows:
-            if(title not in move_set):
-                move_set.add(title)
-                for index, w in enumerate(curr_windows):
-                    if w.title==title:
-                        set_window_position(title, w)
-                        break
-            needSave = tryUpdateJson(title) or needSave
+        for index, w in enumerate(curr_windows):
+            found = False
+            for title in alt_tab_windows:
+                if w.title == title:
+                    found = True
+                    break
+            if found:
+                if not w.open:
+                    # todo delay
+                    set_window_position(w.title, w)
+                    w.open = True
+                else:
+                    needSave = tryUpdateJson(w.title) or needSave
+            else:
+                w.open = False
+            
         if needSave:
             saveJson()      
         time.sleep(1)  # 每秒

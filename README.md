@@ -3,6 +3,6 @@
 - [x] use json
 - [x] restore width and height
 - [ ] optimize delay
-- [ ] after close can restore
+- [x] after close can restore
 - [x] add blacklist
 - [x] add whitelist

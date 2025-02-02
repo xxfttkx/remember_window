@@ -1,17 +1,17 @@
 [
     {
         "title": "雷神加速器",
-        "left": -2335,
-        "top": 75,
+        "left": -2333,
+        "top": 134,
         "width": 1072,
         "height": 672
     },
     {
         "title": "Clash Verge",
-        "left": -2426,
-        "top": 66,
-        "width": 906,
-        "height": 739
+        "left": -1952,
+        "top": 75,
+        "width": 929,
+        "height": 688
     },
     {
         "title": "v2rayN - V5.28 - 2022/07/03",
@@ -40,5 +40,12 @@
         "top": -7,
         "width": 1721,
         "height": 927
+    },
+    {
+        "title": "退出OBS?",
+        "left": -1931,
+        "top": 375,
+        "width": 430,
+        "height": 143
     }
 ]
