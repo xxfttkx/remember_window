@@ -1,17 +1,17 @@
 [
     {
         "title": "雷神加速器",
-        "left": -2276,
-        "top": 147,
+        "left": -2335,
+        "top": 75,
         "width": 1072,
         "height": 672
     },
     {
         "title": "Steam",
-        "left": 0,
-        "top": 0,
-        "width": 2560,
-        "height": 1392
+        "left": -22187,
+        "top": -21333,
+        "width": 107,
+        "height": 19
     },
     {
         "title": "Clash Verge",
@@ -29,9 +29,23 @@
     },
     {
         "title": "雷电模拟器",
-        "left": -32000,
-        "top": -32000,
-        "width": 160,
-        "height": 28
+        "left": -2560,
+        "top": 0,
+        "width": 1707,
+        "height": 912
+    },
+    {
+        "title": "哔哩哔哩直播姬",
+        "left": -2340,
+        "top": 109,
+        "width": 1156,
+        "height": 700
+    },
+    {
+        "title": "OBS 31.0.1 - 配置文件: 未命名 - 场景: 未命名",
+        "left": -2567,
+        "top": -7,
+        "width": 1721,
+        "height": 927
     }
 ]

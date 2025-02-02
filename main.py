@@ -96,6 +96,9 @@ def tryUpdateJson(title):
 
 def getWindowFromTitle(title):
     window = get_window(title)
+    if window == None:
+        # todo
+        print("window $title == None")
     return Window(window.title, window.box.left, window.box.top, window.box.width, window.box.height)
 
 def is_alt_tab_window(hwnd):
