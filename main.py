@@ -1,24 +1,34 @@
+import os
 import time
 import pygetwindow as gw
 from screeninfo import get_monitors
 import json
+import win32gui
+import win32con
 
-need_move = ['雷电模拟器','Clash Verge','v2rayN','OBS','直播姬','雷神加速器']
-need_move_set = set()
+class Window:
+    def __init__(self, title, left, top, width, height):
+        self.title = title
+        self.left = left
+        self.top = top
+        self.width = width
+        self.height = height
 
-# 获取显示器信息
-def get_monitor_info():
-    monitors = get_monitors()
-    monitor_info = []
-    for monitor in monitors:
-        monitor_info.append({
-            "device_name": monitor.name,
-            "width": monitor.width,
-            "height": monitor.height,
-            "x": monitor.x,
-            "y": monitor.y
-        })
-    return monitor_info
+    def toJson(self):
+        return {
+            "title": self.title,
+            "left": self.left,
+            "top": self.top,
+            "width": self.width,
+            "height": self.height
+        }
+
+    @staticmethod
+    def fromJson(data):
+        return Window(data['title'], data['left'], data['top'], data['width'], data['height'])
+
+    def __str__(self):
+        return f"Window(title={self.title})"
 
 def get_window(title):
     windows = gw.getWindowsWithTitle(title)
@@ -30,54 +40,103 @@ def get_window(title):
             return w
     return windows[0]
     
-# 获取窗口位置
-def get_window_position(window_title):
-    window = get_window(window_title)
-    if window == None:
-        return None
-    return window.left, window.top, window.width, window.height
 
 # 设置窗口位置
-def set_window_position(window_title, x, y):
-    window = get_window(window_title)
-    if window != None:
-        window.moveTo(x, y)
+def set_window_position(window_title, window):
+    w = get_window(window_title)
+    if w != None:
+        w.resizeTo(window.width, window.height)
+        w.moveTo(window.left, window.top)
 
-def get_window_positions():
-    windows = gw.getAllWindows()
-    window_positions = []
+def saveJson():
+    filename = 'window_positions.json'
+    data = []
+    for w in curr_windows:
+        data.append(w.toJson())
+    with open(filename, 'w', encoding='utf-8') as json_file:
+        json.dump(data, json_file, ensure_ascii=False, indent=4)
+    print("Save Successd!")
 
-    # 遍历每个窗口，获取其位置和大小
-    for window in windows:
-        if window.isVisible():  # 如果窗口是可见的
-            window_positions.append({
-                "title": window.title,
-                "left": window.left,
-                "top": window.top,
-                "width": window.width,
-                "height": window.height
-            })
+def loadJson():
+    filename = 'window_positions.json'
+    if not os.path.exists(filename):  # 判断文件是否存在
+        print(f"File '{filename}' does not exist.")
+        return []  # 如果文件不存在，返回一个空列表
+    with open(filename, 'r', encoding='utf-8') as json_file:
+        data = json.load(json_file)  # 读取并解析 JSON 数据
+    windows = []
+    for window_data in data:
+        windows.append(Window.fromJson(window_data))  # 转换回 Window 对象
+    print("Load Successd!")
+    return windows
+
+def tryUpdateJson(title):
+    found = False
+    for index, w in enumerate(curr_windows):
+        if w.title==title:
+            curr = getWindowFromTitle(title)
+            if curr!=w:
+                curr_windows[index] = w
+                return True
+            return False
+    if not found:
+        curr_windows.append(getWindowFromTitle(title))
+        return True
+
+def getWindowFromTitle(title):
+    window = get_window(title)
+    return Window(window.title, window.box.left, window.box.top, window.box.width, window.box.height)
+
+def is_alt_tab_window(hwnd):
+    """判断窗口是否是 Alt + Tab 可见的窗口"""
+    if not win32gui.IsWindowVisible(hwnd):
+        return False  # 如果窗口不可见，排除
+    title = win32gui.GetWindowText(hwnd)
+    placement = win32gui.GetWindowPlacement(hwnd)
+    # can del  --- showCmd 
+    if placement[1] == win32con.SW_HIDE:
+        return False  # 如果窗口最小化，排除
+    if placement[2] == (-1,-1):
+        return False  # 如果窗口最小化，排除
+    return True
+
+def get_alt_tab_windows():
+    """获取所有 Alt + Tab 可见的窗口"""
+    visible_windows = []
+
+    def enum_window_callback(hwnd, lParam):
+        """回调函数，用于遍历窗口"""
+        title = win32gui.GetWindowText(hwnd)
+        if title:  # 只添加有标题的窗口
+            if is_alt_tab_window(hwnd):
+                visible_windows.append(title)
     
-    return window_positions
+    # 遍历所有窗口
+    win32gui.EnumWindows(enum_window_callback, None)
+    return visible_windows
 
-# 将窗口位置数据保存到 JSON 文件
-def save_to_json(filename, data):
-    with open(filename, 'w') as json_file:
-        json.dump(data, json_file, indent=4)  # 使用缩进使 JSON 更易读
-        
+curr_windows = []
+
 def main():
-    monitors = get_monitor_info()
+    global curr_windows
+    curr_windows = loadJson()
+    move_set = set()
     while True:
-        windows = gw.getAllTitles()
-        for title in need_move:
-            if(title in windows):
-                if(title not in need_move_set):
-                    need_move_set.add(title)
-                    set_window_position(title, monitors[1]["x"], monitors[1]["y"])
-                    print(title)
+        alt_tab_windows = get_alt_tab_windows()
+        needSave = False
+        for title in alt_tab_windows:
+            if(title not in move_set):
+                move_set.add(title)
+                for index, w in enumerate(curr_windows):
+                    if w.title==title:
+                        set_window_position(title, w)
+                        break
+                print(title)
+                needSave = tryUpdateJson(title) or needSave
+        if needSave:
+            saveJson()      
         time.sleep(1)  # 每秒
             
 
 if __name__ == "__main__":
     main()
-
