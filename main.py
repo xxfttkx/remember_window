@@ -6,7 +6,7 @@ import json
 import win32gui
 import win32con
 
-blacklist = ['Google Chrome', 'Visual Studio Code']
+blacklist = ['Google Chrome', 'Visual Studio Code', '文件资源管理器', 'MAA']
 whitelist = ['Clash Verge']
 class Window:
     def __init__(self, title, left, top, width, height):
@@ -102,13 +102,14 @@ def is_alt_tab_window(hwnd):
     """判断窗口是否是 Alt + Tab 可见的窗口"""
 
     title = win32gui.GetWindowText(hwnd)
-    if title:  # 只添加有标题的窗口
-        for white in whitelist:
-            if white in title:
-                return True
-        for black in blacklist:
-            if black in title:
-                return False
+    if not title:  # 只添加有标题的窗口
+        return False
+    for white in whitelist:
+        if white in title:
+            return True
+    for black in blacklist:
+        if black in title:
+            return False
     if not win32gui.IsWindowVisible(hwnd):
         return False  # 如果窗口不可见，排除
     placement = win32gui.GetWindowPlacement(hwnd)
