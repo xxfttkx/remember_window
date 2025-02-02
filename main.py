@@ -31,7 +31,7 @@ class Window:
         return Window(data['title'], data['left'], data['top'], data['width'], data['height'])
 
     def __str__(self):
-        return f"Window(title={self.title})"
+        return f"Window(title={self.title}, left={self.left})"
     
     def __eq__(self, other):
         # 判断两个对象是否属于同一类，并且它们的 `value` 是否相等
@@ -42,7 +42,6 @@ class Window:
 def get_window(title):
     windows = gw.getWindowsWithTitle(title)
     if len(windows)==0:
-        # print("windows.size==0")
         return None
     for w in windows:
         if w.title == title:
@@ -54,6 +53,7 @@ def get_window(title):
 def set_window_position(window_title, window):
     w = get_window(window_title)
     if w != None:
+        print(f"move {window_title}, left={window.left}")
         w.resizeTo(window.width, window.height)
         w.moveTo(window.left, window.top)
 
@@ -162,7 +162,8 @@ def main():
                     break
             if found:
                 if not w.open:
-                    # todo delay
+                    # delay is necessary for "雷神加速器"
+                    time.sleep(5) 
                     set_window_position(w.title, w)
                     w.open = True
                 else:
