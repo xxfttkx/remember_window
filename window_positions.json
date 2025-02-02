@@ -1,23 +1,37 @@
 [
     {
-        "title": "雷电模拟器",
-        "left": -2560,
-        "top": 0,
-        "width": 1707,
-        "height": 912
+        "title": "雷神加速器",
+        "left": -2276,
+        "top": 147,
+        "width": 1072,
+        "height": 672
     },
     {
-        "title": "v2rayN - V5.28 - 2022/07/03",
-        "left": 384,
-        "top": 396,
-        "width": 968,
-        "height": 632
+        "title": "Steam",
+        "left": 0,
+        "top": 0,
+        "width": 2560,
+        "height": 1392
     },
     {
         "title": "Clash Verge",
-        "left": -2062,
-        "top": 93,
-        "width": 906,
-        "height": 739
+        "left": -22187,
+        "top": -21333,
+        "width": 107,
+        "height": 19
+    },
+    {
+        "title": "v2rayN - V5.28 - 2022/07/03",
+        "left": -32000,
+        "top": -32000,
+        "width": 160,
+        "height": 28
+    },
+    {
+        "title": "雷电模拟器",
+        "left": -32000,
+        "top": -32000,
+        "width": 160,
+        "height": 28
     }
 ]

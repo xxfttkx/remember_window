@@ -6,8 +6,8 @@ import json
 import win32gui
 import win32con
 
-blacklist = ['Google Chrome', 'Visual Studio Code', '文件资源管理器', 'MAA']
-whitelist = ['Clash Verge']
+blacklist = ['Google Chrome', 'Visual Studio Code', '文件资源管理器', 'MAA', 'Windows PowerShell']
+whitelist = ['Clash Verge', '雷神加速器', 'OBS', '直播姬']
 class Window:
     def __init__(self, title, left, top, width, height):
         self.title = title
