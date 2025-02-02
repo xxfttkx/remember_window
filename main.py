@@ -85,7 +85,7 @@ def tryUpdateJson(title):
             curr = getWindowFromTitle(title)
             if curr==None:
                 return False
-            if curr.top<0:
+            if curr.top<-10:
                 return False
             if curr!=w:
                 curr_windows[index] = curr
