@@ -1,10 +1,10 @@
 [
     {
         "title": "雷神加速器",
-        "left": -2335,
-        "top": 75,
-        "width": 1072,
-        "height": 672
+        "left": -22187,
+        "top": -21333,
+        "width": 107,
+        "height": 19
     },
     {
         "title": "Steam",
@@ -36,16 +36,23 @@
     },
     {
         "title": "哔哩哔哩直播姬",
-        "left": -2340,
-        "top": 109,
-        "width": 1156,
-        "height": 700
+        "left": -22187,
+        "top": -21333,
+        "width": 107,
+        "height": 19
     },
     {
         "title": "OBS 31.0.1 - 配置文件: 未命名 - 场景: 未命名",
-        "left": -2567,
-        "top": -7,
-        "width": 1721,
-        "height": 927
+        "left": -22187,
+        "top": -21333,
+        "width": 107,
+        "height": 19
+    },
+    {
+        "title": "Microsoft Visual Studio",
+        "left": -8,
+        "top": -8,
+        "width": 2576,
+        "height": 1408
     }
 ]

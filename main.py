@@ -6,7 +6,7 @@ import json
 import win32gui
 import win32con
 
-blacklist = ['Google Chrome', 'Visual Studio Code', '文件资源管理器', 'MAA', 'Windows PowerShell']
+blacklist = ['Google Chrome', 'Visual Studio Code', '文件资源管理器', 'MAA', 'Windows PowerShell', 'Steam']
 whitelist = ['Clash Verge', '雷神加速器', 'OBS', '直播姬']
 class Window:
     def __init__(self, title, left, top, width, height):
@@ -96,7 +96,7 @@ def tryUpdateJson(title):
 
 def getWindowFromTitle(title):
     window = get_window(title)
-    if window == None:
+    if window is None:
         # todo
         print("window $title == None")
     return Window(window.title, window.box.left, window.box.top, window.box.width, window.box.height)
