@@ -1,17 +1,10 @@
 [
     {
-        "title": "main.py - remember_window - Visual Studio Code",
-        "left": -8,
-        "top": -8,
-        "width": 2576,
-        "height": 1408
-    },
-    {
-        "title": "MAA (正在运行) - Microsoft Visual Studio",
-        "left": -8,
-        "top": -8,
-        "width": 2576,
-        "height": 1408
+        "title": "MAA (Default) - DEBUG VERSION - 相见欢#0128 - 雷电模拟器 (emulator-5554) - 官服",
+        "left": 880,
+        "top": 396,
+        "width": 800,
+        "height": 600
     },
     {
         "title": "雷电模拟器",
@@ -21,46 +14,18 @@
         "height": 912
     },
     {
-        "title": "client.dart - Kazumi - Visual Studio Code",
+        "title": "splatoon_dps - 文件资源管理器",
+        "left": 1027,
+        "top": 591,
+        "width": 1432,
+        "height": 801
+    },
+    {
+        "title": "MAA (正在运行) - Microsoft Visual Studio",
         "left": -32000,
         "top": -32000,
         "width": 160,
         "height": 28
-    },
-    {
-        "title": "应用窗口显示器恢复 - Google Chrome",
-        "left": -8,
-        "top": -8,
-        "width": 2576,
-        "height": 1408
-    },
-    {
-        "title": "20250202.md - quickstart - Visual Studio Code",
-        "left": -32000,
-        "top": -32000,
-        "width": 160,
-        "height": 28
-    },
-    {
-        "title": "window_positions.json - remember_window - Visual Studio Code",
-        "left": -8,
-        "top": -8,
-        "width": 2576,
-        "height": 1408
-    },
-    {
-        "title": "kazumi",
-        "left": 411,
-        "top": 138,
-        "width": 1857,
-        "height": 1049
-    },
-    {
-        "title": "MAA (Default) - DEBUG VERSION - 相见欢#0128 - 雷电模拟器 (emulator-5554) - 官服",
-        "left": 880,
-        "top": 396,
-        "width": 800,
-        "height": 600
     },
     {
         "title": "v2rayN - V5.28 - 2022/07/03",
@@ -70,17 +35,31 @@
         "height": 632
     },
     {
-        "title": "splatoon_dps - 文件资源管理器",
-        "left": 1027,
-        "top": 591,
-        "width": 1432,
-        "height": 801
-    },
-    {
         "title": "Clash Verge",
-        "left": -2560,
-        "top": 0,
+        "left": -2062,
+        "top": 93,
         "width": 906,
         "height": 739
+    },
+    {
+        "title": "kazumi",
+        "left": -46720,
+        "top": -48000,
+        "width": 360,
+        "height": 63
+    },
+    {
+        "title": "坚果云",
+        "left": 1028,
+        "top": 377,
+        "width": 505,
+        "height": 638
+    },
+    {
+        "title": "",
+        "left": -2560,
+        "top": 0,
+        "width": 1,
+        "height": 1
     }
 ]

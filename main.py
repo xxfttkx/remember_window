@@ -6,6 +6,8 @@ import json
 import win32gui
 import win32con
 
+blacklist = ['Google Chrome', 'Visual Studio Code']
+whitelist = ['Clash Verge']
 class Window:
     def __init__(self, title, left, top, width, height):
         self.title = title
@@ -29,6 +31,12 @@ class Window:
 
     def __str__(self):
         return f"Window(title={self.title})"
+    
+    def __eq__(self, other):
+        # 判断两个对象是否属于同一类，并且它们的 `value` 是否相等
+        if isinstance(other, Window):
+            return self.title == other.title and self.left == other.left and self.top == other.top and self.width == other.width and self.height == other.height
+        return False
 
 def get_window(title):
     windows = gw.getWindowsWithTitle(title)
@@ -76,11 +84,14 @@ def tryUpdateJson(title):
         if w.title==title:
             curr = getWindowFromTitle(title)
             if curr!=w:
-                curr_windows[index] = w
+                curr_windows[index] = curr
+                print(curr)
                 return True
             return False
     if not found:
-        curr_windows.append(getWindowFromTitle(title))
+        w = getWindowFromTitle(title)
+        curr_windows.append(w)
+        print(w)
         return True
 
 def getWindowFromTitle(title):
@@ -89,9 +100,17 @@ def getWindowFromTitle(title):
 
 def is_alt_tab_window(hwnd):
     """判断窗口是否是 Alt + Tab 可见的窗口"""
+
+    title = win32gui.GetWindowText(hwnd)
+    if title:  # 只添加有标题的窗口
+        for white in whitelist:
+            if white in title:
+                return True
+        for black in blacklist:
+            if black in title:
+                return False
     if not win32gui.IsWindowVisible(hwnd):
         return False  # 如果窗口不可见，排除
-    title = win32gui.GetWindowText(hwnd)
     placement = win32gui.GetWindowPlacement(hwnd)
     # can del  --- showCmd 
     if placement[1] == win32con.SW_HIDE:
@@ -106,10 +125,9 @@ def get_alt_tab_windows():
 
     def enum_window_callback(hwnd, lParam):
         """回调函数，用于遍历窗口"""
-        title = win32gui.GetWindowText(hwnd)
-        if title:  # 只添加有标题的窗口
-            if is_alt_tab_window(hwnd):
-                visible_windows.append(title)
+        if is_alt_tab_window(hwnd):
+            title = win32gui.GetWindowText(hwnd)
+            visible_windows.append(title)
     
     # 遍历所有窗口
     win32gui.EnumWindows(enum_window_callback, None)
@@ -131,8 +149,7 @@ def main():
                     if w.title==title:
                         set_window_position(title, w)
                         break
-                print(title)
-                needSave = tryUpdateJson(title) or needSave
+            needSave = tryUpdateJson(title) or needSave
         if needSave:
             saveJson()      
         time.sleep(1)  # 每秒
