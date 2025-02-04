@@ -170,9 +170,7 @@ def main():
                     needSave = tryUpdateJson(w.title) or needSave
             else:
                 w.open = False
-            
-        if needSave:
-            saveJson()
+                
         for title in alt_tab_windows:
             found = False
             for index, w in enumerate(curr_windows):
