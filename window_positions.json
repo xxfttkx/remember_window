@@ -8,10 +8,10 @@
     },
     {
         "title": "Clash Verge",
-        "left": -1952,
-        "top": 75,
-        "width": 929,
-        "height": 688
+        "left": -1939,
+        "top": 85,
+        "width": 779,
+        "height": 719
     },
     {
         "title": "v2rayN - V5.28 - 2022/07/03",
@@ -21,11 +21,11 @@
         "height": 632
     },
     {
-        "title": "雷电模拟器",
-        "left": -2560,
-        "top": 0,
-        "width": 1707,
-        "height": 912
+        "title": "MAA (Default) - DEBUG VERSION - 相见欢#0128 - 雷电模拟器 (emulator-5554) - 官服",
+        "left": 880,
+        "top": 396,
+        "width": 800,
+        "height": 600
     },
     {
         "title": "哔哩哔哩直播姬",
@@ -47,5 +47,12 @@
         "top": 375,
         "width": 430,
         "height": 143
+    },
+    {
+        "title": "雷电模拟器",
+        "left": -32000,
+        "top": -32000,
+        "width": 160,
+        "height": 28
     }
 ]

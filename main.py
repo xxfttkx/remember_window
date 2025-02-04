@@ -7,7 +7,7 @@ import win32gui
 import win32con
 
 blacklist = ['Google Chrome', 'Visual Studio', '文件资源管理器', 'MAA', 'Windows PowerShell', 'Steam']
-whitelist = ['Clash Verge', '雷神加速器', 'OBS', '直播姬']
+whitelist = ['Clash Verge', '雷神加速器', '雷电模拟器', 'OBS', '直播姬']
 class Window:
     def __init__(self, title, left, top, width, height):
         self.title = title
@@ -172,7 +172,17 @@ def main():
                 w.open = False
             
         if needSave:
-            saveJson()      
+            saveJson()
+        for title in alt_tab_windows:
+            found = False
+            for index, w in enumerate(curr_windows):
+                if w.title == title:
+                    found = True
+                    break
+            if not found:
+                needSave = tryUpdateJson(title)
+        if needSave:
+            saveJson() 
         time.sleep(1)  # 每秒
             
 
